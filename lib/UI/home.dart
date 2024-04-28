@@ -13,10 +13,8 @@ class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Digital Card'),
-        ),
         body: SafeArea(
           child: LayoutBuilder(
             builder: (context, constraints) {
@@ -25,7 +23,7 @@ class _HomescreenState extends State<Homescreen> {
                 return HorizontalCard();
               } else {
                 
-                return VerticalCard();
+                return Portrait();
               }
             },
           ),

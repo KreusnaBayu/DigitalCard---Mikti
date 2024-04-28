@@ -1,37 +1,99 @@
+import 'package:april26/Components/List.dart';
+import 'package:april26/Components/background.dart';
+import 'package:april26/Components/card.dart';
+import 'package:april26/const/color.dart';
 import 'package:flutter/material.dart';
 
-class VerticalCard extends StatefulWidget {
-  const VerticalCard({super.key});
+class Portrait extends StatefulWidget {
+  const Portrait({super.key});
 
   @override
-  State<VerticalCard> createState() => _VerticalCardState();
+  State<Portrait> createState() => _PortraitState();
 }
 
-class _VerticalCardState extends State<VerticalCard> {
+class _PortraitState extends State<Portrait> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          border: Border.all(),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Column(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Stack(
           children: [
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: NetworkImage(
-                  'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shutterstock.com%2Fid%2Fsearch%2Forang-jawa&psig=AOvVaw0g3FT2kXnZ6x-MX5-_CFmp&ust=1714226752270000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCKjv3LSG4IUDFQAAAAAdAAAAABAE'),
+            Container(
+              decoration: BoxDecoration(
+                gradient: BackgroundVertikal().buildBackgroundGradient(),
+              ),
             ),
-            SizedBox(height: 20),
-            Text(
-              'Nama',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.08,
+              left: 20,
+              child: Container(
+                padding: EdgeInsets.all(20),
+                child: Text(
+                  'Kreusna Bayu P.W',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
-            Text('Jabatan'),
-            Text('Nomor HP/Telp'),
-            Text('Email'),
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.2,
+              right: 4,
+              child: CircleAvatar(
+                radius: 90,
+                backgroundImage: AssetImage('assets/bayu.png'),
+                backgroundColor: CustomColors.BG2,
+              ),
+            ),
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.18,
+              left: 20, 
+              child: Container(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Student",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: CustomColors.Text1,
+                      ),
+                    ),
+                    Text(
+                      "Flutter Developer",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: CustomColors.Text1,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+              top: MediaQuery.of(context).size.height *
+                  0.37, 
+              left: 20,
+              right: 20,
+              child: AboutMeCard(),
+            ),
+            Positioned(
+              bottom: 20, 
+              left: 0,
+              right: 0,
+              child: SizedBox(
+                height: 200, 
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20), 
+                  child: ContentList(), 
+                ),
+              ),
+            ),
           ],
         ),
       ),

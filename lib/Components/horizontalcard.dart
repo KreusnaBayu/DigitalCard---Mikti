@@ -1,3 +1,7 @@
+import 'package:april26/Components/List.dart';
+import 'package:april26/Components/background.dart';
+import 'package:april26/Components/card.dart';
+import 'package:april26/const/color.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalCard extends StatefulWidget {
@@ -9,40 +13,76 @@ class HorizontalCard extends StatefulWidget {
 
 class _HorizontalCardState extends State<HorizontalCard> {
   @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        width: 600,
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          border: Border.all(),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Row(
-          children: [
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: NetworkImage(
-                  'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shutterstock.com%2Fid%2Fsearch%2Forang-jawa&psig=AOvVaw0g3FT2kXnZ6x-MX5-_CFmp&ust=1714226752270000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCKjv3LSG4IUDFQAAAAAdAAAAABAE'),
-            ),
-            SizedBox(width: 20),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+Widget build(BuildContext context) {
+  return MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: BackgroundHorizontal().buildBackgroundGradient(),
+          ),
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 20), // Jarak dari atas
+              Text(
+                'Kreusna Bayu P.W',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(height: 10), // Ubah jarak antara judul dan teks Student
+              Row(
                 children: [
-                  Text(
-                    'Nama',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0), // Tambahkan padding ke teks Student
+                          child: Text(
+                            "Student",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: CustomColors.Text1,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          "Flutter Developer",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: CustomColors.Text1,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  Text('Jabatan'),
-                  Text('Nomor HP/Telp'),
-                  Text('Email'),
+                  SizedBox(width: 20), // Jarak antara teks dan gambar
+                  CircleAvatar(
+                    radius: 70,
+                    backgroundImage: AssetImage('assets/bayu.png'),
+                    backgroundColor: CustomColors.BG2,
+                  ),
                 ],
               ),
-            ),
-          ],
+              SizedBox(height: 50), // Jarak antara gambar dan deskripsi
+              AboutMeCard(),
+              SizedBox(height: 20), // Jarak antara AboutMeCard dan ContentList
+              SizedBox(
+                height: 200,
+                child: ContentList(),
+              ),
+              SizedBox(height: 20), // Jarak dari bawah
+            ],
+          ),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 }
